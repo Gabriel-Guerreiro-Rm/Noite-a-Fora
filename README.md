@@ -1,8 +1,8 @@
-# 🚀 Projeto Final AV3: TicketHub - Sistema de Venda de Ingressos
+# 🚀 Projeto Final AV3: Noite a Fora - Sistema de Venda de Ingressos
 
 ## 🎓 Disciplina: Técnicas de Integração de Sistemas (AV3)
 
-### 🧑‍💻 Equipe: [Nomes dos Integrantes]
+### 🧑‍💻 Equipe: Gabriel Guerreiro, Carlos Rodrigues, Diego dos Santos.
 
 ---
 
