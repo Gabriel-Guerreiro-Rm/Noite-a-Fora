@@ -139,21 +139,6 @@ O fluxo demonstra como a compra de um ingresso no **Sistema 2** é bloqueada pel
 Abaixo estão os diagramas da arquitetura do sistema e os principais fluxos de integração (Mermaid). Você pode visualizar esses diagramas no GitHub ou em editores com suporte a Mermaid.
 
 **Arquitetura (visão geral)**
-
-```mermaid
-graph LR
-    F[Frontend] -->|Login / Compra| S2[Sales API<br/>(porta:3000)]
-    S2 -->|GET /subscription/status/:id<br/>(Bearer JWT)| S3[Subscription API<br/>(porta:3002)]
-    S2 -->|POST /event/internal/purchase<br/>(API Key)| S1[Core API<br/>(porta:3001)]
-    S3 -->|grava| DB3[(Postgres - subscriptions)]
-    S1 -->|grava| DB1[(Postgres - public)]
-    S2 -->|grava| DB2[(Postgres - sales)]
-    Stripe[Stripe (Gateway - modo teste)] -->|webhook POST /subscription/webhook| S3
-    S3 -->|gera link checkout| Stripe
-    classDef services fill:#f9f,stroke:#333,stroke-width:1px;
-    class S1,S2,S3 services;
-```
-
 **Fluxo A — Barreira de Assinatura (Paywall)**
 
 ```mermaid
