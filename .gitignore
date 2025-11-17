@@ -1,0 +1,6 @@
+# Ignora pastas de dependências e de build
+**/node_modules
+**/dist
+
+# Ignora arquivos de ambiente
+.env

@@ -1,0 +1,52 @@
+import {
+  Controller,
+  Post,
+  Body,
+  UseGuards,
+  Request,
+  Get,
+  Param,
+} from '@nestjs/common';
+import { EventService } from './event.service';
+import { AuthGuard } from 'src/auth/guards/auth.guard';
+import { CreateEventDto } from './dto/create-event.dto';
+import { CreateTicketLotDto } from './dto/create-ticket-lot.dto';
+import { ApiKeyGuard } from 'src/auth/guards/api-key.guard';
+
+@Controller('event')
+export class EventController {
+  constructor(private readonly eventService: EventService) {}
+
+  @UseGuards(AuthGuard)
+  @Post()
+  create(@Request() req, @Body() createEventDto: CreateEventDto) {
+    const organizerId = req.user.sub;
+    return this.eventService.createEvent(organizerId, createEventDto);
+  }
+
+  @UseGuards(AuthGuard)
+  @Post(':id/lot')
+  addTicketLot(
+    @Request() req,
+    @Param('id') eventId: string,
+    @Body() createTicketLotDto: CreateTicketLotDto,
+  ) {
+    const organizerId = req.user.sub;
+    return this.eventService.addTicketLot(
+      organizerId,
+      eventId,
+      createTicketLotDto,
+    );
+  }
+
+  @Get()
+  findAll() {
+    return this.eventService.findAllEvents();
+  }
+
+  @UseGuards(ApiKeyGuard)
+  @Post('internal/purchase')
+  purchase(@Body() body: { ticketLotId: string }) {
+    return this.eventService.purchaseTicket(body.ticketLotId);
+  }
+}

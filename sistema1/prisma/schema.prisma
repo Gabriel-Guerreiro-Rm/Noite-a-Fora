@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // Já está corrigido aqui
+  url      = env("DATABASE_URL")
+}
+
+model Organizer {
+  id        String  @id @default(uuid())
+  email     String  @unique
+  name      String
+  password  String
+  events    Event[]
+}
+
+model Event {
+  id             String      @id @default(uuid())
+  name           String
+  date           DateTime
+  location       String
+  organizer      Organizer   @relation(fields: [organizerId], references: [id])
+  organizerId    String
+  ticketLots     TicketLot[]
+  createdAt      DateTime    @default(now())
+}
+
+model TicketLot {
+  id          String   @id @default(uuid())
+  name        String
+  price       Float
+  quantity    Int
+  event       Event    @relation(fields: [eventId], references: [id])
+  eventId     String
+  createdAt   DateTime @default(now())
+}
