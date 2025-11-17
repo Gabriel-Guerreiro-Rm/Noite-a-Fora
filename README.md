@@ -2,7 +2,7 @@
 
 ## 🎓 Disciplina: Técnicas de Integração de Sistemas (AV3)
 
-### 🧑‍💻 Equipe: Gabriel Guerreiro, Carlos Rodrigues, Diego dos Santos.
+### 🧑‍💻 Equipe: Gabriel Guerreiro, Carlos Rodrigues, Diego Souza dos Santos.
 
 ---
 
@@ -194,4 +194,3 @@ sequenceDiagram
 - **Autenticação:** S2 usa JWT para autenticar clientes; chamadas internas críticas S2->S1 usam `API Key` entre serviços.
 - **Bancos:** cada sistema tem seu schema/BD (public, sales, subscriptions) conforme tabela anterior.
 - **Stripe:** usado em modo teste para gerar checkout; envia webhook para `sistema3`.
-- **Renderização Mermaid:** GitHub suporta Mermaid nativamente; localmente, use um preview com suporte a Mermaid (ex.: extensão "Markdown Preview Enhanced" ou similar no VS Code).
